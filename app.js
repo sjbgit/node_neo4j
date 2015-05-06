@@ -11,7 +11,7 @@ var express = require('express')
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3500);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -39,6 +39,11 @@ app.post('/users', routes.users.create);
 app.get('/users/:id', routes.users.show);
 app.post('/users/:id', routes.users.edit);
 app.del('/users/:id', routes.users.del);
+
+
+//create relationship
+app.post('/users/:id/createRelationship/:relationship', routes.users.createRelationship);
+
 
 app.post('/users/:id/follow', routes.users.follow);
 app.post('/users/:id/unfollow', routes.users.unfollow);

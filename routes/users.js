@@ -89,6 +89,33 @@ exports.follow = function (req, res, next) {
 };
 
 /**
+ * POST /users/:id/:relationship
+ */
+exports.createRelationship = function (req, res, next) {
+
+    var relationship = req.params.relationship;
+
+    console.log(req);
+
+    console.log(relationship);
+
+    console.log('body: ' + req.body);
+
+    User.get(req.params.id, function (err, user) {
+        if (err) return next(err);
+        User.get(req.body.user.id, function (err, other) {
+            if (err) return next(err);
+            user.createRelationshipTo(relationship, other, function (err) {
+                if (err) return next(err);
+                res.redirect('/users/' + user.id);
+            });
+        });
+    });
+};
+
+
+
+/**
  * POST /users/:id/unfollow
  */
 exports.unfollow = function (req, res, next) {

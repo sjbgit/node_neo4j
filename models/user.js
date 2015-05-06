@@ -68,6 +68,13 @@ User.prototype.follow = function (other, callback) {
     });
 };
 
+User.prototype.createRelationshipTo = function (relationship, other, callback) {
+    this._node.createRelationshipTo(other._node, relationship, {}, function (err, rel) {
+        callback(err);
+    });
+};
+
+
 User.prototype.unfollow = function (other, callback) {
     var query = [
         'MATCH (user:User) -[rel:follows]-> (other:User)',
