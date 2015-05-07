@@ -40,6 +40,16 @@ app.get('/users/:id', routes.users.show);
 app.post('/users/:id', routes.users.edit);
 app.del('/users/:id', routes.users.del);
 
+/*
+
+
+POST http://localhost:3500/users/1/createRelationship/knows
+
+{"user": { "id": 3}}
+
+
+ */
+
 
 //create relationship
 app.post('/users/:id/createRelationship/:relationship', routes.users.createRelationship);

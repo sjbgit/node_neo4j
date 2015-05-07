@@ -179,4 +179,4 @@ User.create = function (data, callback) {
         var user = new User(results[0]['user']);
         callback(null, user);
     });
-};
+};  
